@@ -1,0 +1,256 @@
+        <!--Student Registration details   validate Student first and last name     age should be between 18 to 50 -->
+         <!--q1.html -->  
+          
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Student Registration</title>
+            <script>
+                function validateForm() {
+                    let fname = document.getElementById("fname").value;
+                    let lname = document.getElementById("lname").value;
+                    let age = document.getElementById("age").value;
+
+                    let namePattern = /^[A-Za-z]+$/;
+                    let valid = true;
+
+                    // First Name Validation
+                    if (!namePattern.test(fname)) {
+                        document.getElementById("fnameError").innerHTML = "Only alphabets allowed";
+                        valid = false;
+                    } else {
+                        document.getElementById("fnameError").innerHTML = "";
+                    }
+
+                    // Last Name Validation
+                    if (!namePattern.test(lname)) {
+                        document.getElementById("lnameError").innerHTML = "Only alphabets allowed";
+                        valid = false;
+                    } else {
+                        document.getElementById("lnameError").innerHTML = "";
+                    }
+
+                    // Age Validation
+                    if (age < 18 || age > 50) {
+                        document.getElementById("ageError").innerHTML = "Age must be 18 to 50";
+                        valid = false;
+                    } else {
+                        document.getElementById("ageError").innerHTML = "";
+                    }
+
+                    // Success Message
+                    if (valid) {
+                        document.getElementById("success").innerHTML = "Form submitted successfully!";
+                        return false; 
+                    } else {
+                        document.getElementById("success").innerHTML = "";
+                        return false;
+                    }
+                }
+            </script>
+        </head>
+
+        <body>
+            <h2>Student Registration Form</h2>
+
+            <form onsubmit="return validateForm()">
+                First Name:
+                <input type="text" id="fname">
+                <span id="fnameError" style="color:red"></span>
+                <br><br>
+
+                Last Name:
+                <input type="text" id="lname">
+                <span id="lnameError" style="color:red"></span>
+                <br><br>
+
+                Age:
+                <input type="number" id="age">
+                <span id="ageError" style="color:red"></span>
+                <br><br>
+
+                <input type="submit" value="Register">
+            </form>
+
+            <p id="success" style="color:green"></p>
+        </body>
+        </html>
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<!--   Employee Registration  DOB, Joining Date i.e. DOB should be less than the Joining Date by 20 Years-->
+<!-- q2.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate() {
+    var dob = new Date(document.getElementById("dob").value);
+    var join = new Date(document.getElementById("join").value);
+
+    // difference in years
+    var diff = join.getFullYear() - dob.getFullYear();
+
+    if (diff < 20) {
+        document.getElementById("error").innerHTML = "Age must be at least 20 years at joining";
+        return false;
+    } else {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("msg").innerHTML = "Success!";
+        return false;
+    }
+}
+</script>
+</head>
+
+<body>
+
+<h2>Employee Registration</h2>
+
+<form onsubmit="return validate()">
+
+Employee No: <input type="text"><br><br>
+
+Employee Name: <input type="text"><br><br>
+
+Salary: <input type="number"><br><br>
+
+DOB: <input type="date" id="dob"><br><br>
+
+Joining Date: <input type="date" id="join"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+<p id="error" style="color:red"></p>
+<p id="msg" style="color:green"></p>
+
+</body>
+</html>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<!--HTML login validation Username and Email -->
+<!-- q3.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate() {
+
+    var username = document.getElementById("u").value;
+    var email = document.getElementById("e").value;
+    var password = document.getElementById("p").value;
+
+    var userPattern = /^[A-Za-z]+$/;   // only alphabets
+    var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    // Username validation
+    if (!userPattern.test(username)) {
+        document.getElementById("uError").innerHTML = "Invalid Username";
+        return false;
+    } else {
+        document.getElementById("uError").innerHTML = "";
+    }
+
+    // Email validation
+    if (!emailPattern.test(email)) {
+        document.getElementById("eError").innerHTML = "Invalid Email";
+        return false;
+    } else {
+        document.getElementById("eError").innerHTML = "";
+    }
+
+    // Password validation (min 6 characters)
+    if (password.length < 6) {
+        document.getElementById("pError").innerHTML = "Min 6 characters required";
+        return false;
+    } else {
+        document.getElementById("pError").innerHTML = "";
+    }
+
+    document.getElementById("msg").innerHTML = "Login Successful!";
+    return false;
+}
+</script>
+</head>
+
+<body>
+
+<h2>Login Form</h2>
+
+<form onsubmit="return validate()">
+
+Username: <input type="text" id="u">
+<span id="uError" style="color:red"></span><br><br>
+
+Email: <input type="text" id="e">
+<span id="eError" style="color:red"></span><br><br>
+
+Password: <input type="password" id="p">
+<span id="pError" style="color:red"></span><br><br>
+
+<input type="submit" value="Login">
+
+</form>
+
+<p id="msg" style="color:green"></p>
+
+</body>
+</html>
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<!--HTML form validate PRN No.12 digits and only numbers-->
+<!-- q4.html -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate() {
+    var prn = document.getElementById("prn").value;
+
+    // PRN check (12 digits only)
+    if (!/^[0-9]{12}$/.test(prn)) {
+        document.getElementById("e1").innerHTML = "Enter 12 digit PRN";
+        return false;
+    } else {
+        document.getElementById("e1").innerHTML = "";
+    }
+
+    document.getElementById("msg").innerHTML = "Form Submitted!";
+    return false;
+}
+
+// Uppercase name
+function upper() {
+    var n = document.getElementById("name");
+    n.value = n.value.toUpperCase();
+}
+</script>
+</head>
+
+<body>
+
+<form onsubmit="return validate()">
+
+PRN: <input type="text" id="prn">
+<span id="e1" style="color:red"></span><br><br>
+
+Name: <input type="text" id="name" onkeyup="upper()"><br><br>
+
+Class: <input type="text"><br><br>
+
+Qualification: <input type="text"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+<p id="msg" style="color:green"></p>
+
+</body>
+</html>
